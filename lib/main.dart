@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_flutter_demo/DetailsPage.dart';
 import 'package:sample_flutter_demo/Home.dart';
 
 main(){
@@ -13,6 +14,9 @@ class MyApp extends StatelessWidget {
 
       debugShowCheckedModeBanner: false,
       home:Home(),
+      routes: {
+        //'Detailspage': (context) => const Detailspage(),
+      },
 
     );
   }

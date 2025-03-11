@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_flutter_demo/DetailsPage.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -12,6 +13,36 @@ class Home extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Colors.grey[200],
+      bottomNavigationBar: Container(
+        height: 70,
+        color: Colors.white,
+       
+        child: Container(
+          decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(topLeft: Radius.circular(40),
+          topRight: Radius.circular(40),
+          ),
+          boxShadow: [
+            BoxShadow(blurRadius: 20,color: Colors.grey,spreadRadius: 1)
+          ]
+        ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              buildContainerBottomNav(Icons.person),
+              buildContainerBottomNav(Icons.shopping_bag),
+              buildContainerBottomNav(Icons.home,isSelected: true),
+              buildContainerBottomNav(Icons.favorite),
+              buildContainerBottomNav(Icons.settings),
+          
+            
+          
+            ],
+            
+          ),
+        ),
+      ) ,
       appBar: AppBar(
         toolbarHeight: 45,
         backgroundColor: Colors.grey[200],
@@ -34,7 +65,7 @@ class Home extends StatelessWidget {
               space,
               Text('Shop',style: TextStyle(fontSize: 32,letterSpacing: 1),),
               space,
-              Text('Anthropologie',style: TextStyle(
+              Text('Shopyy',style: TextStyle(
                 fontWeight: FontWeight.bold,fontSize: 32,letterSpacing: 1
               ),)
             ],
@@ -64,72 +95,90 @@ class Home extends StatelessWidget {
                   ),
                 ]
               ),
-              child: Column(
-                
-                children: [
-                  const SizedBox(height: 18,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
-                      columnMethod("candles",isSelected: true),
-                      columnMethod("Vases",isSelected: false),
-                      columnMethod("bins",isSelected: false),
-                      columnMethod("Floral",isSelected: false),
-                      columnMethod("Decor",isSelected: false),
-                       
-                      
-                      
-                    ],
+              child: SingleChildScrollView(
+                physics: BouncingScrollPhysics(),
+                child: Column(
+                  
+                  children: [
+                    const SizedBox(height: 18,),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        columnMethod("candles",isSelected: true),
+                        columnMethod("Vases",isSelected: false),
+                        columnMethod("bins",isSelected: false),
+                        columnMethod("Floral",isSelected: false),
+                        columnMethod("Decor",isSelected: false),
+      
+                      ],
+                    ),
+                    spaceh,
+                    SingleChildScrollView(
+                      physics: BouncingScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          SizedBox(width: 20,),
+
+                          buildColumnwithrow("1","summer decoration","29",context),
+                          buildColumnwithrow("2","winter decoration","30",context),
+                          buildColumnwithrow("3","autum decoration","20",context),
+                          buildColumnwithrow("4","spring decoration","32",context),
+                          buildColumnwithrow("5","rainy decoration","35",context),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: 20,),
+                  lineBar(),
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Row(
+                      children: [
+                        Text("Holiday Special",style: TextStyle(fontSize: 15,),),
+                        Spacer(),
+                        Text("View All",style: TextStyle(fontSize: 15,color: Colors.grey),),
+                      ],
+                    ),
                   ),
-                  spaceh,
                   SingleChildScrollView(
                     physics: BouncingScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     child: Row(
                       children: [
-                        SizedBox(width: 20,),
-                        buildColumnwithrow("1","summer decoration","29"),
-                        buildColumnwithrow("2","winter decoration","30"),
-                        buildColumnwithrow("3","autum decoration","20"),
-                        buildColumnwithrow("4","spring decoration","32"),
-                        buildColumnwithrow("5","rainy decoration","35"),
+                        BuildBottomContainer("winter ","1","30","20"),
+                         BuildBottomContainer("summer","2","20","10"),
+                          BuildBottomContainer("Autmun","3","25","15"),
+                           BuildBottomContainer("Spring","4","40","25"),
+                    
                       ],
                     ),
                   ),
-                  // SizedBox(height: 20,),
-                lineBar(),
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    children: [
-                      Text("Holiday Special",style: TextStyle(fontSize: 15,),),
-                      Spacer(),
-                      Text("View All",style: TextStyle(fontSize: 15,color: Colors.grey),),
-                    ],
-                  ),
+                
+                    
+                   
+                  ],
                 ),
-                SingleChildScrollView(
-                  physics: BouncingScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      BuildBottomContainer("winter ","1","30","20"),
-                       BuildBottomContainer("summer","2","20","10"),
-                        BuildBottomContainer("Autmun","3","25","15"),
-                         BuildBottomContainer("Spring","4","40","25"),
-                  
-                    ],
-                  ),
-                )
-                  
-                 
-                ],
               ),
             ),
           )
         ],
       ),
     );
+  }
+
+  Container buildContainerBottomNav(IconData icon,{isSelected=false}) {
+    return Container(
+            decoration: BoxDecoration(
+              color:isSelected? Colors.pink[100]:Colors.white,
+              shape: BoxShape.circle,
+              boxShadow: isSelected? [
+                BoxShadow(color: Colors.grey,blurRadius: 10,spreadRadius: 1)
+              ]:[],
+            ),
+            height: 50,
+            width: 50,
+            child: Icon(icon,color: isSelected? Colors.white:Colors.black,),
+          );
   }
 
   Container BuildBottomContainer(String text,String img,String price,String pieces) {
@@ -160,24 +209,31 @@ class Home extends StatelessWidget {
                   );
   }
 
-  Padding buildColumnwithrow(String img,String title,String price) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-                        children: [
-                          Container(
-                            height: 190,
-                            width: 130,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(20),
-                              child: Image.asset("assets/d$img.jpg",fit: BoxFit.cover,),
+  GestureDetector  buildColumnwithrow(String img,String title,String price,  BuildContext context) {
+    return GestureDetector(
+      onTap: (){
+         Navigator.of(context).push(MaterialPageRoute(builder: (context){
+                                return Detailspage(title: title,img: img,context:context,price: price,);
+                              }));
+      },
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+                          children: [
+                            Container(
+                              height: 190,
+                              width: 130,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(20),
+                                child: Image.asset("assets/d$img.jpg",fit: BoxFit.cover,),
+                                ),
                               ),
-                            ),
-                            const SizedBox(height: 10,),
-                            Text(title,style: TextStyle(fontSize: 16),),
-                            Text("\$ $price",style: TextStyle(fontSize: 20 ),),
-                        ],
-                      ),
+                              const SizedBox(height: 10,),
+                              Text(title,style: TextStyle(fontSize: 16),),
+                              Text("\$ $price",style: TextStyle(fontSize: 20 ),),
+                          ],
+                        ),
+      ),
     );
   }
 
