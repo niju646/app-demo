@@ -52,7 +52,7 @@ class Detailspage extends StatelessWidget {
                           children: [
                             Text("$title",style: TextStyle(
                               fontWeight: FontWeight.bold,fontSize: 28),),
-                            Text("\$$price",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 28),)
+                            Text("\$$price",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
                             
                           ],
                         ),
@@ -110,11 +110,13 @@ class Detailspage extends StatelessWidget {
                       ),
                       ),
                       TextButton.icon(
+                        
                         style: TextButton.styleFrom(
+                          
                           backgroundColor: Colors.pink[200],
                           shape: StadiumBorder(),
                           
-                          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/6,vertical: 10),
+                          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/6,vertical:5),
                         ),
                         onPressed: (){}, 
                       label: Text("Add to Cart",style: TextStyle(color: Colors.white,fontSize: 20,
