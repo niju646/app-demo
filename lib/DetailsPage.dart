@@ -41,8 +41,62 @@ class Detailspage extends StatelessWidget {
                child: Column(
                 children: [
                   Expanded(
-                    child: Column(
-                    children: [],
+                    child: SingleChildScrollView(
+                      padding: EdgeInsets.all(30),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text('ILLUM'),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("$title",style: TextStyle(
+                              fontWeight: FontWeight.bold,fontSize: 28),),
+                            Text("\$$price",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 28),)
+                            
+                          ],
+                        ),
+                        const SizedBox(height: 20,),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("SIZE"),
+                                const SizedBox(height: 5,),
+                                Text("16 0Z"),
+                              ],
+                            ),
+                            ),
+                            Expanded(child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text("QTY"),
+                                const SizedBox(height: 5,),
+                                Text("1")
+                              ],
+                            ))
+                            
+                          ],
+                        ),
+                        SizedBox(height: 20,),
+                        Divider(thickness: 1.5,),
+                        ListTile(
+                          leading: Text("Details",style: TextStyle(fontSize: 18,
+                          ),),
+                          trailing: IconButton(onPressed: (){}, icon: Icon(Icons.add,color: Colors.black,)),
+                        ),
+                        Divider(thickness:1.5 ,),
+                        ListTile(
+                          leading: Text("Shipping & Return",style: TextStyle(fontSize: 18),),
+                          trailing: Icon(Icons.add,color: Colors.black,),
+                        )
+
+                        
+
+                      ],
+                      ),
                     )
                   ),
                   Container(height: 40,
@@ -59,7 +113,8 @@ class Detailspage extends StatelessWidget {
                         style: TextButton.styleFrom(
                           backgroundColor: Colors.pink[200],
                           shape: StadiumBorder(),
-                          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/5,vertical: 10),
+                          
+                          padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width/6,vertical: 10),
                         ),
                         onPressed: (){}, 
                       label: Text("Add to Cart",style: TextStyle(color: Colors.white,fontSize: 20,
@@ -68,7 +123,8 @@ class Detailspage extends StatelessWidget {
                       icon:Icon(Icons.shopping_bag_outlined,color: Colors.white,) ,)
                     ],
                   )
-                  ,)
+                  ,),
+                  SizedBox(height: 5,)
                 ],
                ),
                
